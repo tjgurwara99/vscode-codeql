@@ -35,6 +35,7 @@ jobs:
           if [[ `git status --porcelain` ]]; then
             git add .
             git commit -m "automatically bump cli version"
+            git push --set-upstream origin bump-cli
             git push
             gh pr create --title "Bump CLI Version for integration tests" --body "" 
           fi
