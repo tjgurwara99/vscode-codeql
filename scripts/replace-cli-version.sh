@@ -4,8 +4,8 @@ VERSIONS=$(gh api -H "Accept: application/vnd.github+json" /repos/github/codeql-
 
 echo $VERSIONS
 
-LATEST_VERSION=$(echo $VERSIONS | awk '{ print $1 }')
-PREVIOUS_VERSION=$(echo $VERSIONS | awk '{ print $2 }')
+LATEST_VERSION=$(echo $VERSIONS | awk '{ print $1 }' | sed "s/\"//g")
+PREVIOUS_VERSION=$(echo $VERSIONS | awk '{ print $2 }' | sed "s/\"//g")
 
 echo $LATEST_VERSION
 echo $PREVIOUS_VERSION
