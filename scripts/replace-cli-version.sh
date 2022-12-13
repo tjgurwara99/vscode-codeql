@@ -2,8 +2,13 @@
 
 VERSIONS=$(gh api -H "Accept: application/vnd.github+json" /repos/github/codeql-cli-binaries/releases | jq '.[].tag_name' | head -2)
 
+echo $VERSIONS
+
 LATEST_VERSION=$(echo $VERSIONS | head -1 | sed "s/\"/'/g")
 PREVIOUS_VERSION=$(echo $VERSIONS | tail -1 | sed "s/\"/'/g")
+
+echo $LATEST_VERSION
+echo $PREVIOUS_VERSION
 
 sed -i "s/$PREVIOUS_VERSION/$LATEST_VERSION/g" .github/workflows/main.yml
 sed -i "s/$PREVIOUS_VERSION/$LATEST_VERSION/g" extensions/ql-vscode/src/vscode-tests/ensureCli.ts
