@@ -17,7 +17,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 1
-          token: ${{ secrets.WORKFLOW_TOKEN }}
       - name: Bump CLI
         env:
           GH_TOKEN: ${{ github.token }}
@@ -26,7 +25,7 @@ jobs:
       - name: Commit, Push and Open a PR
         uses: ./.github/actions/create-pr
         with:
-          token: ${{ secrets.WORKFLOW_TOKEN }}
+          token: ${{ github.token }}
           base-branch: refs/heads/main
           head-branch: bump-cli
           commit-message: Bump CLI version from ${{ env.PREVIOUS_VERSION }} to ${{ env.LATEST_VERSION }} for integration tests
